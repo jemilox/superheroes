@@ -2,18 +2,20 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded( {extended: false});
+var urlencodedParser = bodyParser.urlencoded( {extended: true});
 var mongoose = require('mongoose');
 
 app.use(bodyParser.json());
 //connect to my db
+var mongoURI = "mongodb://localhost:27017/superheroes";
+var MongoDB = mongoose.connect(mongoURI);
 
 //routers
-var Pet = require('../models/pet');
-//var petRouter = require('../routers/petRouter');
+//var Hero = require('../models/superhero');
+var heroRouter = require('../routers/heroRouter');
 
-var mongoURI = "mongodb://localhost:27017/pets";
-var MongoDB = mongoose.connect(mongoURI);
+
+
 //
 // MongoDB.on('error', function () {
 //   console.log('mongodb connection err:', err);
@@ -23,8 +25,8 @@ var MongoDB = mongoose.connect(mongoURI);
 //   console.log('mongodb connection open!');
 // });
 
-//use routers, if /pet, go to petRouter
-//app.use('/pet', petRouter);
+//use routers, if /hero, go to petRouter
+app.use('/hero', heroRouter);
 
 
 app.get('/', function (req, res) {
@@ -36,37 +38,7 @@ app.use(express.static('public'));
 
 
 
-var server = app.listen('3000', function () {
+var server = app.listen('4242', function () {
   var port = server.address().port;
   console.log('Port up');
-});
-
-app.post('/', function (req, res) {
-  console.log('in / post');
-  console.log('req.body', req.body);
-  var sendData = req.body;
-  var newPet = new Pet({
-    name: sendData.name,
-    animal: sendData.animal,
-    age: sendData.age,
-    imageurl: sendData.imageUrl
-  });
-  newPet.save(function (err) {
-    if(err){
-      console.log('error occured:', err);
-      res.sendStatus(500);
-    }else{
-      console.log('assignment saved successfully!');
-      res.sendStatus(201);
-    }
-  });
-
-});
-
-app.get('/all', function (req, res) {
-  console.log('in /all');
-  Pet.find({}, function (err, petResults) {
-    console.log('petResults', petResults);
-    res.send(petResults);
-  });
 });

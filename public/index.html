@@ -4,20 +4,31 @@
     <meta charset="utf-8">
     <title></title>
     <script src="/vendors/angular.min.js"></script>
-    <script src="/vendors/angular-route.min.js"></script>
     <script src="scripts/script.js"></script>
-    <script src="/scripts/controllers/homeController.js"></script>
-    <script src="/scripts/controllers/addPet.js"></script>
-    <script src="/scripts/controllers/mew.js"></script>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
-    <h1>Welcome to Pet Madness!</h1>
-    <ul>
+  <body ng-controller="superheroController">
+    <h1>Superhero Land!</h1>
+    <input type="text" placeholder="alias" ng-model="alias">
+    <input type="text" placeholder="fname" ng-model="fname">
+    <input type="text" placeholder="lname" ng-model="lname">
+    <input type="text" placeholder="city" ng-model="city">
+    <input type="text" placeholder="power" ng-model="power">
+    <button ng-click="addHero()">Submit</button>
+    <div ng-repeat="all in allsuperheroes">
+      Alias: {{all.alias}}<br>
+      First Name: {{all.fname}}<br>
+      Last Name: {{all.lname}}<br>
+      City: {{all.city}}<br>
+      Power: {{all.power}}<br>
+      <button ng-click="runDelete($index)">Delete</button><br><br>
+
+    </div>
+    <!-- <ul>
       <li><a href = "#home">Home</a></li>
       <li><a href = "#addPet">Add Pet</a></li>
       <li><a href = "#mew">Show Pets</a></li>
-    <div ng-view></div>
+    <div ng-view></div> -->
 
 
   </body>
