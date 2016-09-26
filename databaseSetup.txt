@@ -1,0 +1,8 @@
+db: superheroes
+collection: heroes
+
+alias: String,
+fname: String,
+lname: String,
+city: String,
+power: String

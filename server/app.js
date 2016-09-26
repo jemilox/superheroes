@@ -16,15 +16,6 @@ var heroRouter = require('../routers/heroRouter');
 
 
 
-//
-// MongoDB.on('error', function () {
-//   console.log('mongodb connection err:', err);
-// });
-//
-// MongoDB.once('open', function () {
-//   console.log('mongodb connection open!');
-// });
-
 //use routers, if /hero, go to petRouter
 app.use('/hero', heroRouter);
 

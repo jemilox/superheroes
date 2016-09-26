@@ -17,7 +17,7 @@ myApp.controller('superheroController', ['$scope', '$http', function ($scope, $h
       lname: $scope.lname,
       city: $scope.city,
       power: $scope.power
-    };//end object newAssignment
+    };//end object
     console.log('sending', newHero);
     $http({
       method: 'POST',
@@ -27,7 +27,7 @@ myApp.controller('superheroController', ['$scope', '$http', function ($scope, $h
       console.log('got this from the server', response);
     });
     getAll();
-  };//end addAssignment
+  };//end addhero
 
   var getAll = function () {
     console.log('in getAll');
